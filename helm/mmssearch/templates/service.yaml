@@ -11,6 +11,7 @@ spec:
   selector:
     app: {{ template "mmssearch.name" . }}-mmssearch
     release: {{ .Release.Name }}
+  type: NodePort
   ports:
   - port: 8080
     targetPort: 8080

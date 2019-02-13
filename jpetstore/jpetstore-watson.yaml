@@ -5,6 +5,7 @@ metadata:
 spec:
   selector:
     app: mmssearch
+  type: NodePort
   ports:
   - port: 8080
     targetPort: 8080
@@ -24,7 +25,7 @@ spec:
     spec:
       containers:
       - name: mmssearch
-        image: <REGISTRY NAMESPACE>/mmssearch
+        image: kissyyy/mmssearch
         ports:
         - containerPort: 8080
         env:
@@ -41,17 +42,3 @@ spec:
           items:
           - key: mms-secrets
             path: mms-secrets.json
----
-kind: Ingress
-apiVersion: extensions/v1beta1
-metadata:
-  name: jpetstore-ingress-mms
-spec:
-  rules:
-  - host: mmssearch.<CLUSTER DOMAIN>
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: mmssearch
-          servicePort: 8080
